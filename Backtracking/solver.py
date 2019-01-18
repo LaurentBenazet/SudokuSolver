@@ -33,6 +33,31 @@ def findFreeCase(grid):
     return False
 
 
+# Asserts if the given number is used in the given row
+def usedInGivenRow(grid, row, num):
+    for col in range(9):
+        if grid[row][col] == num:
+            return True
+    return False
+
+
+# Asserts if the given number is used in the given col
+def usedInGivenCol(grid, col, num):
+    for row in range(9):
+        if grid[row][col] == num:
+            return True
+    return False
+
+
+# Asserts if the given number is used in the given box (3 * 3 cases)
+def usedInBox(grid, startingRow, startingCol, num):
+    for row in range(3):
+        for col in range(3):
+            if grid[row + startingRow][col + startingCol] == num:
+                return True
+    return False
+
+
 print_toSolve()
 print(varCol)
 print(varRow)
