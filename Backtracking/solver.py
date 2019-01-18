@@ -10,7 +10,7 @@ gridToSolve = [[9, 0, 0, 1, 0, 0, 0, 0, 5],
                [0, 0, 1, 9, 0, 4, 5, 7, 0]]
 
 # They will be used to find the first empty case
-varRow, varCol = 0, 0
+varRow, varCol = -1, -1
 
 
 def print_toSolve():
@@ -56,6 +56,14 @@ def usedInBox(grid, startingRow, startingCol, num):
             if grid[row + startingRow][col + startingCol] == num:
                 return True
     return False
+
+
+# Asserts if we can put the given number in the given case
+def canPutNumberHere(grid, row, col, num):
+    return not usedInBox(grid, row, col, num) \
+           and not usedInGivenCol(grid, col, num) \
+           and not usedInGivenRow(grid, row, num) \
+           and grid[row][col] == 0
 
 
 print_toSolve()
