@@ -78,8 +78,14 @@ def canPutNumberHere(grid, row, col, num):
            and grid[row][col] == 0
 
 
-if solveGrid(gridToSolve) :
+# Used for tests
+def getSolvedGrid(grid):
+    solveGrid(grid)
+    return grid
+
+
+if solveGrid(gridToSolve):
     print("\nI found a solution !")
     printSolvedGrid(gridToSolve)
-else :
+else:
     print("No solution found !")
