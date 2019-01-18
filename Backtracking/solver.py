@@ -78,5 +78,8 @@ def canPutNumberHere(grid, row, col, num):
            and grid[row][col] == 0
 
 
-solveGrid(gridToSolve)
-printSolvedGrid(gridToSolve)
+if solveGrid(gridToSolve) :
+    print("\nI found a solution !")
+    printSolvedGrid(gridToSolve)
+else :
+    print("No solution found !")
