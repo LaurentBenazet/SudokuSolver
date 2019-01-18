@@ -1,36 +1,48 @@
 # basic grid to solve (correct tests will be made later)
-gridToSolve = [[9, 0, 0, 1, 0, 0, 0, 0, 5],
-               [0, 0, 5, 0, 9, 0, 2, 0, 1],
-               [8, 0, 0, 0, 4, 0, 0, 0, 0],
-               [0, 0, 0, 0, 8, 0, 0, 0, 0],
-               [0, 0, 0, 7, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 2, 6, 0, 0, 9],
-               [2, 0, 0, 3, 0, 0, 0, 0, 6],
-               [0, 0, 0, 2, 0, 0, 9, 0, 0],
-               [0, 0, 1, 9, 0, 4, 5, 7, 0]]
-
-# They will be used to find the first empty case
-varRow, varCol = -1, -1
+gridToSolve = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
+               [5, 2, 0, 0, 0, 0, 0, 0, 0],
+               [0, 8, 7, 0, 0, 0, 0, 3, 1],
+               [0, 0, 3, 0, 1, 0, 0, 8, 0],
+               [9, 0, 0, 8, 6, 3, 0, 0, 5],
+               [0, 5, 0, 0, 9, 0, 6, 0, 0],
+               [1, 3, 0, 0, 0, 0, 2, 5, 0],
+               [0, 0, 0, 0, 0, 0, 0, 7, 4],
+               [0, 0, 5, 2, 0, 6, 3, 0, 0]]
 
 
-def print_toSolve():
-    print("Grid to solve \n")
-    for a in gridToSolve:
-        print(a)
+def printSolvedGrid(grid):
+    print("\nGrid solved : \n")
+    for row in grid:
+        print(row)
     print("\n")
 
 
-# Allows us to find the coordinates of the first empty case (and assign them to variables defined above)
+# Asserts if the grid is fully solved or not (for recursivity) and solves the grid
+def solveGrid(grid):
+    # When there is no more free case, the grid is solved
+    row, col, boolean = findFreeCase(grid)
+    if not boolean:
+        return True
+
+    for num in range(1, 10):
+        if canPutNumberHere(grid, row, col, num):
+            grid[row][col] = num
+
+            if solveGrid(grid):
+                return True
+            else:
+                grid[row][col] = 0
+
+    return False
+
+
+# Allows us to find the coordinates of the first empty case (and assign them to variables in solveGrid)
 def findFreeCase(grid):
-    global varRow
-    global varCol
     for row in range(9):
         for col in range(9):
             if grid[row][col] == 0:
-                varRow = row
-                varCol = col
-                return True
-    return False
+                return row, col, True
+    return 0, 0, False
 
 
 # Asserts if the given number is used in the given row
@@ -60,15 +72,11 @@ def usedInBox(grid, startingRow, startingCol, num):
 
 # Asserts if we can put the given number in the given case
 def canPutNumberHere(grid, row, col, num):
-    return not usedInBox(grid, row, col, num) \
+    return not usedInBox(grid, row - row % 3, col - col % 3, num) \
            and not usedInGivenCol(grid, col, num) \
            and not usedInGivenRow(grid, row, num) \
            and grid[row][col] == 0
 
 
-print_toSolve()
-print(varCol)
-print(varRow)
-print(findFreeCase(gridToSolve))
-print(varCol)
-print(varRow)
+solveGrid(gridToSolve)
+printSolvedGrid(gridToSolve)
