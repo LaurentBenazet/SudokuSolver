@@ -5,7 +5,10 @@ def printSolvedGrid(grid):
     print("\n")
 
 
+# This code isn't very clean, every function isn't meant to be inner and private, but it does what I created it for
+# This function is the core of the solver, with every function used
 def solver(grid):
+    # this grid contains every number possible for each case of the grid at the beginning of the solving
     possibilitiesGrid = [[[] for _ in range(9)] for _ in range(9)]
 
     # Asserts if the grid is fully solved or not (for recursivity) and solves the grid
@@ -15,6 +18,7 @@ def solver(grid):
         if not boolean:
             return True
 
+        # we take only number possible for this case (it is more optimized)
         for num in possibilitiesGrid[row][col]:
             # this verification is useful during recursion (because possibilitiesGrid isn't updated)
             if _inner_canPutNumberHere(grid, row, col, num):
@@ -64,6 +68,8 @@ def solver(grid):
                and grid[row][col] == 0
 
     # main part of the solver
+
+    # initialization of possibilitesGrid
     for num in range(1, 10):
         for row in range(9):
             for col in range(9):
