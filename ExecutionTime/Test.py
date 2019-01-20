@@ -2,7 +2,7 @@ import time
 
 
 def timeTestV1():
-    from Backtracking.solver import getSolvedGrid
+    from BackTrackingV1.solver import getSolvedGrid
     start = time.time()
     getSolvedGrid([[0, 3, 0, 0, 0, 1, 2, 0, 5],
                    [8, 1, 0, 3, 0, 0, 0, 6, 0],
@@ -18,7 +18,7 @@ def timeTestV1():
 
 
 def timeTestV2():
-    from BacktrackingV2.solver import solver
+    from BackTrackingV2.solver import solver
     start = time.time()
     grid = [[0, 3, 0, 0, 0, 1, 2, 0, 5],
             [8, 1, 0, 3, 0, 0, 0, 6, 0],

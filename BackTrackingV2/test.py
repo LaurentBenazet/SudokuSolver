@@ -1,6 +1,6 @@
 import unittest
 
-from BacktrackingV2.solver import solver
+from BackTrackingV2.solver import solver
 
 
 class Test(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
 
-from Backtracking.solver import getSolvedGrid
+from BackTrackingV1.solver import getSolvedGrid
 
 
 class Test(unittest.TestCase):
